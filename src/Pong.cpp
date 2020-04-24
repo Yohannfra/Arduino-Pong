@@ -22,20 +22,24 @@ void Pong::resetVars()
 
 void Pong::annimateGoal()
 {
-    for (int i = 0; i < 3; i++) {
-        _ledmatrix[LEFT].setAllMatrix(LOW);
-        _ledmatrix[RIGHT].setAllMatrix(LOW);
-        delay(300);
+    for (int i = 0; i < 2; i++) {
         _ledmatrix[LEFT].setAllMatrix(HIGH);
         _ledmatrix[RIGHT].setAllMatrix(HIGH);
+        delay(300);
+        _ledmatrix[LEFT].setAllMatrix(LOW);
+        _ledmatrix[RIGHT].setAllMatrix(LOW);
         delay(300);
     }
 }
 
 void Pong::updateBallPosition()
 {
-    int ret = _ball.update();
-    (void)ret;
+    int ball_pos = _ball.update();
+
+    if (ball_pos == 1) {
+        annimateGoal();
+        resetVars();
+    }
 }
 
 void Pong::updateRacketsPosition()

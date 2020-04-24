@@ -17,6 +17,7 @@ int Ball::update()
         _x = last_x; // TODO WIN/LOSE CONDITION (Or racket)
         _vx = -_vx;
         _x += (_x == 16) ? -1 : 1;
+        return 1;
     }
     if (_y < 0 || _y > 7) {
         _y = last_y;
