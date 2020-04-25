@@ -20,7 +20,7 @@
 // Matrix constants
 #define MATRIX_SIZE (8)
 
-// ball
+// Ball
 #define DEFAULT_BALL_X (3)
 #define DEFAULT_BALL_Y (4)
 #define DEFAULT_BALL_VX (1)

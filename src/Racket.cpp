@@ -1,4 +1,5 @@
 #include "Racket.hpp"
+
 #include "constants.h"
 
 Racket::Racket(side_e side) : _side(side)
@@ -7,10 +8,9 @@ Racket::Racket(side_e side) : _side(side)
     _x = (_side == LEFT) ? 0 : 15;
 }
 
-int Racket::collide(int x, int y)
+int Racket::collide(int y) const
 {
-
-    return 0;
+    return (_y == y) ? 1 : (_y + 1 == y) ? 2 : (_y + 2 == y) ? 3 : 0;
 }
 
 int Racket::getX() const

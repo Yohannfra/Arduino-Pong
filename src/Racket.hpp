@@ -7,7 +7,7 @@ class Racket {
     public:
         Racket(side_e side);
         Racket() = default;
-        int collide(int x, int y); // 0 : no | 1 : up | 2 : middle | 3 : down
+        int collide(int y) const; // 0 : no | 1 : up | 2 : middle | 3 : down
         int getX() const;
         int getY() const;
         void setY(int y);

@@ -13,7 +13,7 @@ class Ball {
 
     public:
         Ball();
-        int update();
+        int update(Racket &racketLeft, Racket &racketRight);
         void reset();
         side_e getSide() const;
         int getX() const;

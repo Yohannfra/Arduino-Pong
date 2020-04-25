@@ -5,7 +5,7 @@ Ball::Ball()
     reset();
 }
 
-int Ball::update()
+int Ball::update(Racket &racketLeft, Racket &racketRight)
 {
     int last_x = _x;
     int last_y = _y;
@@ -13,11 +13,21 @@ int Ball::update()
     _x += _vx;
     _y += _vy;
 
-    if (_x < 1 || _x > 16) {
-        _x = last_x; // TODO WIN/LOSE CONDITION (Or racket)
-        _vx = -_vx;
-        _x += (_x == 16) ? -1 : 1;
+    if (_x == 0 || _x == 17)
         return 1;
+
+    if (_x == 1 || _x == 16) {
+        int collideLeft = racketLeft.collide(_y);
+        int collideRight = racketRight.collide(_y);
+        if (_x == 1 && collideLeft != 0) {
+            _x = last_x;
+            _vx = -_vx;
+            _vy = (collideLeft == 1) ? -1 : (collideLeft == 3) ? 1 : 0;
+        } else if (_x == 16 && collideRight != 0) {
+            _x = last_x;
+            _vx = -_vx;
+            _vy = (collideRight == 1) ? -1 : (collideRight == 3) ? 1 : 0;
+        }
     }
     if (_y < 0 || _y > 7) {
         _y = last_y;

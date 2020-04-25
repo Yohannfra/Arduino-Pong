@@ -34,7 +34,7 @@ void Pong::annimateGoal()
 
 void Pong::updateBallPosition()
 {
-    int ball_pos = _ball.update();
+    int ball_pos = _ball.update(_rackets[LEFT], _rackets[RIGHT]);
 
     if (ball_pos == 1) {
         annimateGoal();
@@ -57,14 +57,14 @@ void Pong::start()
 {
     resetVars();
     while (1) {
-        _ledmatrix[LEFT].displayRacket(LEFT, _rackets[LEFT].getY());
-        _ledmatrix[RIGHT].displayRacket(RIGHT, _rackets[RIGHT].getY());
+        updateBallPosition();
+        updateRacketsPosition();
         if (_ball.getSide() == LEFT)
             _ledmatrix[LEFT].displayBall(_ball.getX(), _ball.getY());
         else
             _ledmatrix[RIGHT].displayBall(_ball.getX() - MATRIX_SIZE, _ball.getY());
-        updateBallPosition();
-        updateRacketsPosition();
+        _ledmatrix[LEFT].displayRacket(LEFT, _rackets[LEFT].getY());
+        _ledmatrix[RIGHT].displayRacket(RIGHT, _rackets[RIGHT].getY());
         delay(250);
         _ledmatrix[LEFT].setAllMatrix(LOW);
         _ledmatrix[RIGHT].setAllMatrix(LOW);
