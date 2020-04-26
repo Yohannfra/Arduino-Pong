@@ -4,7 +4,6 @@
 
 void setup()
 {
-    Serial.begin(9600);
     Pong p;
     p.start();
 }
