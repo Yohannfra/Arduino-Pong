@@ -14,7 +14,6 @@ class LedMatrix {
     public:
         LedMatrix(int pin_clk, int pin_cs, int pin_din);
         LedMatrix() = default;
-        void turn_light_on_arrow_style(int color); // color 1 red : 2 green
         void setAllMatrix(int value);
         void displayRacket(side_e side, int y);
         void displayBall(int x, int y);
